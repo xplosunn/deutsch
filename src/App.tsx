@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {FormEventHandler, useState} from 'react';
 import './App.css';
 import {exercises as allExercises, Exercise} from "./exercises";
 
@@ -53,7 +53,8 @@ function App() {
     const ongoingExercise: OngoingExercise = maybeOngoingExercise
     const question = ongoingExercise.exercise[0]
 
-    const next = () => {
+    const next: FormEventHandler<{}> = (e) => {
+        e.preventDefault();
         if (ongoingExercise.exercise.length > 1) {
             setMaybeOngoingExercise({
                 ...ongoingExercise,
@@ -65,6 +66,14 @@ function App() {
         }
     }
 
+    const submit: FormEventHandler<{}> = (e) => {
+        e.preventDefault();
+        setMaybeOngoingExercise({
+            ...ongoingExercise,
+            submittedAnswer: (document.getElementById("input-answer")! as HTMLInputElement).value
+        })
+    }
+
     return (
         <div className="App">
             <header className="App-header">
@@ -73,27 +82,21 @@ function App() {
                 {
                     ongoingExercise.submittedAnswer
                         ? isSubmittedAnswerCorrect(ongoingExercise.submittedAnswer, question.answer)
-                            ? (<>
+                            ? (<form onSubmit={next}>
                                 <p>Correct!</p>
                                 <p>It was: {question.answer}</p>
-                                <button onClick={next}>Next
-                                </button>
-                            </>)
-                            : (<>
+                                <button type="submit">Next</button>
+                            </form>)
+                            : (<form onSubmit={next}>
                                 <p>Wrong!</p>
                                 <p>You answered: {ongoingExercise.submittedAnswer}</p>
                                 <p>It was: {question.answer}</p>
-                                <button onClick={next}>Next
-                                </button>
-                            </>)
-                        : (<>
+                                <button type="submit">Next</button>
+                            </form>)
+                        : (<form onSubmit={submit}>
                             <input type="text" id="input-answer"/>
-                            <button onClick={() => setMaybeOngoingExercise({
-                                ...ongoingExercise,
-                                submittedAnswer: (document.getElementById("input-answer")! as HTMLInputElement).value
-                            })}>Submit
-                            </button>
-                        </>)
+                            <button type="submit">Submit</button>
+                        </form>)
                 }
             </header>
         </div>
