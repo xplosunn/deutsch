@@ -23,8 +23,8 @@ const exerciseToOngoing = (name: string, exercise: Exercise): OngoingExercise =>
     }
 }
 
-const isSubmittedAnswerCorrect = (submitted: string, correct: string): Boolean => {
-    return submitted.trim().toLowerCase() === correct.trim().toLowerCase()
+const isSubmittedAnswerCorrect = (submitted: string, correctAnswers: string[]): Boolean => {
+    return correctAnswers.some(correct => correct.trim().toLowerCase() === submitted.trim().toLowerCase())
 }
 
 function App() {
@@ -40,8 +40,13 @@ function App() {
                     <div>
                         {
                             Object.keys(allExercises).map((name) =>
-                                (<button
-                                    onClick={() => setMaybeOngoingExercise(exerciseToOngoing(name, allExercises[name]))}>{name}</button>)
+                                (<>
+                                    <button
+                                        onClick={() =>
+                                            setMaybeOngoingExercise(exerciseToOngoing(name, allExercises[name]))
+                                        }>{name}</button>
+                                    <hr/>
+                                </>)
                             )
                         }
                     </div>
@@ -74,6 +79,8 @@ function App() {
         })
     }
 
+    const answersStr = question.answers.length == 1 ? question.answers[0] : question.answers.join(" / ")
+
     return (
         <div className="App">
             <header className="App-header">
@@ -81,16 +88,16 @@ function App() {
                 <p>{question.prompt}</p>
                 {
                     ongoingExercise.submittedAnswer
-                        ? isSubmittedAnswerCorrect(ongoingExercise.submittedAnswer, question.answer)
+                        ? isSubmittedAnswerCorrect(ongoingExercise.submittedAnswer, question.answers)
                             ? (<form onSubmit={next}>
                                 <p>Correct!</p>
-                                <p>It was: {question.answer}</p>
+                                <p>It was: {answersStr}</p>
                                 <button type="submit">Next</button>
                             </form>)
                             : (<form onSubmit={next}>
                                 <p>Wrong!</p>
                                 <p>You answered: {ongoingExercise.submittedAnswer}</p>
-                                <p>It was: {question.answer}</p>
+                                <p>It was: {answersStr}</p>
                                 <button type="submit">Next</button>
                             </form>)
                         : (<form onSubmit={submit}>

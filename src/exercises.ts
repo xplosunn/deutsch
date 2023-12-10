@@ -1,12 +1,15 @@
 export type Question = {
     prompt: string;
-    answer: string;
+    answers: string[];
 }
 
 export type Exercise = Question[]
 
-const exercise = (prompt: string, answer: string): Question => {
-    return {prompt, answer}
+const exercise = (prompt: string, answer: string | string[]): Question => {
+    return {
+        prompt,
+        answers: (typeof answer === 'string') ? [answer] : answer
+    }
 }
 
 const verbenImPerfekt = [
@@ -21,6 +24,20 @@ const verbenImPerfekt = [
     exercise("Conrad Zuse hat 1937 den ersten frei programmierbaren Computer _____. (erfinden)", "erfunden"),
 ]
 
+const verbenMitPraepositionen = [
+    exercise("Verzichten Sie doch ___ Klatsch und Trasch!", "auf"),
+    exercise("Erinnerst du dich oft ___ deine Studienzeit?", "an"),
+    exercise("Ich gratuliere dir ___ Geburtstag.", "zum"),
+    exercise("Freust du dich ___ dein Praktikum?", ["auf", "über"]),
+    exercise("Ich fürchte mich ___ Schlangen.", "vor"),
+    exercise("___ welche Stelle hast du dich beworben?", "Um"),
+    exercise("Er gehört ___ den bekannsten Künstlern Deutschlands.", "zu"),
+    exercise("Hast du dich ___ dem Preis erkundigt?", "nach"),
+    exercise("Die meisten Künstler in Deutschland leben ___ sehr wenig Geld.", "von"),
+]
+
+
 export const exercises: Record<string, Exercise> = {
     "Verben im Perfekt": verbenImPerfekt,
+    "Verben mit Präpositionen": verbenMitPraepositionen,
 };
