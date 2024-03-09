@@ -61,9 +61,32 @@ const zeitangabenPraepositionen = [
     exercise("___ Juli fahren wir nach Spanien.", "Im"),
 ]
 
+const deklinationVonArtikel: Question[] = [
+    exercise("Nominativ, Maskulinum", "der"),
+    exercise("Nominativ, Femininum", "die"),
+    exercise("Nominativ, Neutrum", "das"),
+    exercise("Nominativ, Plural", "die"),
+
+    exercise("Akkusativ, Maskulinum", "den"),
+    exercise("Akkusativ, Femininum", "die"),
+    exercise("Akkusativ, Neutrum", "das"),
+    exercise("Akkusativ, Plural", "die"),
+
+    exercise("Dativ, Maskulinum", "dem"),
+    exercise("Dativ, Femininum", "der"),
+    exercise("Dativ, Neutrum", "dem"),
+    exercise("Dativ, Plural", "den"),
+
+    exercise("Genitiv, Maskulinum", "des"),
+    exercise("Genitiv, Femininum", "der"),
+    exercise("Genitiv, Neutrum", "des"),
+    exercise("Genitiv, Plural", "der"),
+]
+
 export const exercises: Record<string, Exercise> = {
     "Verben im Perfekt": verbenImPerfekt,
     "Verben im Präteritum": verbenImPraeteritum,
     "Verben mit Präpositionen": verbenMitPraepositionen,
     "Zeitangaben Präpositionen": zeitangabenPraepositionen,
+    "Deklination von Artikel": deklinationVonArtikel,
 };
