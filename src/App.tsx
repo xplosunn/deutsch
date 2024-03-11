@@ -116,17 +116,17 @@ function App() {
                 {
                     isAnswerCorrect ?
                         (<form onSubmit={next}>
-                            <p>Correct!
+                            <p style={{color: 'green'}}>Correct!
                                 ({ongoingExercise.totalCorrectAnswers + 1}/{ongoingExercise.totalQuestions - ongoingExercise.exercise.length + 1})</p>
                             <p>It was: {answersStr}</p>
-                            <button type="submit">{nextButtonText}</button>
+                            <button type="submit"><h2>{nextButtonText}</h2></button>
                         </form>)
                         : (<form onSubmit={next}>
-                            <p>Wrong!
+                        <p style={{ color: 'red' }}>Wrong!
                                 ({ongoingExercise.totalCorrectAnswers}/{ongoingExercise.totalQuestions - ongoingExercise.exercise.length + 1})</p>
                             <p>You answered: {ongoingExercise.submittedAnswer}</p>
                             <p>It was: {answersStr}</p>
-                            <button type="submit">{nextButtonText}</button>
+                            <button type="submit"><h2>{nextButtonText}</h2></button>
                         </form>)
                 }
             </header>
