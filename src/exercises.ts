@@ -83,10 +83,80 @@ const deklinationVonArtikel: Question[] = [
     exercise("Genitiv, Plural", "der"),
 ]
 
+const LokalangabenWechselPraepositionen: Question[] = [
+    ...[
+        exercise("___ Deutschland", "nach"),
+        exercise("___ München", "nach"),
+        exercise("___ Europa", "nach"),
+        exercise("___ Hause", "nach"),
+
+        exercise("___ die Kirche", "in"),
+        exercise("___ die Schule", "in"),
+        exercise("___ das Restaurant", "in"),
+        exercise("___ den Park", "in"),
+        exercise("___ die Schweiz", "in"),
+        exercise("___ den Sudan", "in"),
+        exercise("___ die Niederlande", "in"),
+        exercise("___ die USA", "in"),
+
+        exercise("___ das Fenster", "an"),
+        exercise("___ die Nordsee", "an"),
+        exercise("___ den Strand", "an"),
+
+        exercise("___ den Berg", "auf"),
+        exercise("___ eine einsame Insel", "auf"),
+        exercise("___ den Potsdamer Platz", "auf"),
+
+        exercise("___ meinen Eltern", "zu"),
+        exercise("___ dem Artzt", "zu"),
+        exercise("___ dem Friseur", "zu"),
+        exercise("___ der Polizei", "zu"),
+        exercise("___ dem Unterricht", "zu"),
+        exercise("___ Mercedes", "zu"),
+    ].map(question => ({
+        ...question,
+        prompt: "Wohin gehen/fahren/fliegen Sie?" + question.prompt,
+    })),
+    ...[
+        exercise("___ Deutschland", "in"),
+        exercise("___ München", "in"),
+        exercise("___ Europa", "in"),
+        exercise("___ Hause", "zu"),
+
+        exercise("___ der Kirche", "in"),
+        exercise("___ der Schule", "in"),
+        exercise("___ dem Restaurant", "in"),
+        exercise("___ dem Park", "in"),
+        exercise("___ der Schweiz", "in"),
+        exercise("___ dem Sudan", "in"),
+        exercise("___ den Niederlande", "in"),
+        exercise("___ den USA", "in"),
+
+        exercise("___ dem Fenster", "an"),
+        exercise("___ der Nordsee", "an"),
+        exercise("___ dem Strand", "an"),
+
+        exercise("___ dem Berg", "auf"),
+        exercise("___ einer einsamen Insel", "auf"),
+        exercise("___ dem Potsdamer Platz", "auf"),
+
+        exercise("___ meinen Eltern", "bei"),
+        exercise("___ dem Artzt", "bei"),
+        exercise("___ dem Friseur", "bei"),
+        exercise("___ der Polizei", "bei"),
+        exercise("___ dem Unterricht", "bei"),
+        exercise("___ Mercedes", "bei"),
+    ].map(question => ({
+        ...question,
+        prompt: "Wo waren Sie?" + question.prompt,
+    })),
+]
+
 export const exercises: Record<string, Exercise> = {
     "Verben im Perfekt": verbenImPerfekt,
     "Verben im Präteritum": verbenImPraeteritum,
     "Verben mit Präpositionen": verbenMitPraepositionen,
     "Zeitangaben Präpositionen": zeitangabenPraepositionen,
     "Deklination von Artikel": deklinationVonArtikel,
+    "Lokalangaben Wechselpräpositionen": LokalangabenWechselPraepositionen,
 };
