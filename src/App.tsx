@@ -17,13 +17,13 @@ function shuffle<T>(unshuffled: T[]): T[] {
         .map(({value}) => value)
 }
 
-const exerciseToOngoing = (name: string, exercise: Exercise): OngoingExercise => {
+const exerciseToOngoing = (name: string, exercise: Exercise, cap: number | null = null): OngoingExercise => {
     return {
         name,
-        exercise: shuffle(exercise),
+        exercise: cap ? shuffle(exercise).slice(0, cap) : shuffle(exercise),
         submittedAnswer: null,
         totalCorrectAnswers: 0,
-        totalQuestions: exercise.length,
+        totalQuestions: cap ? cap : exercise.length,
     }
 }
 
@@ -45,10 +45,17 @@ function App() {
                         {
                             Object.keys(allExercises).map((name) =>
                                 (<>
+                                    <label>{name}:</label>
+                                    {allExercises[name].length > 10
+                                        ? <button
+                                            onClick={() =>
+                                                setMaybeOngoingExercise(exerciseToOngoing(name, allExercises[name], 10))
+                                            }>Do 10</button>
+                                        : <></>}
                                     <button
                                         onClick={() =>
                                             setMaybeOngoingExercise(exerciseToOngoing(name, allExercises[name]))
-                                        }>{name}</button>
+                                        }>Do all {allExercises[name].length}</button>
                                     <hr/>
                                 </>)
                             )
@@ -91,7 +98,7 @@ function App() {
     }
 
     const isAnswerCorrect = isSubmittedAnswerCorrect(ongoingExercise.submittedAnswer, question.answers)
-    const nextButtonText = ongoingExercise.exercise.length > 1 ? `Next (${ongoingExercise.exercise.length} missing)` : "Back to exercise list"
+    const nextButtonText = ongoingExercise.exercise.length > 1 ? `Next (${ongoingExercise.exercise.length - 1} more)` : "Back to exercise list"
 
     const next: FormEventHandler<{}> = (e) => {
         e.preventDefault();
