@@ -91,7 +91,7 @@ function App() {
     }
 
     const isAnswerCorrect = isSubmittedAnswerCorrect(ongoingExercise.submittedAnswer, question.answers)
-    const nextButtonText = ongoingExercise.exercise.length > 1 ? "Next" : "Back to exercise list"
+    const nextButtonText = ongoingExercise.exercise.length > 1 ? `Next (${ongoingExercise.exercise.length} missing)` : "Back to exercise list"
 
     const next: FormEventHandler<{}> = (e) => {
         e.preventDefault();
