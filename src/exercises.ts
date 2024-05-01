@@ -12,31 +12,6 @@ const exercise = (prompt: string, answer: string | string[]): Question => {
     }
 }
 
-const verbenImPerfekt = [
-    exercise("Wie viele E-mails haben Sie gestern _____? (schreiben)", "geschrieben"),
-    exercise("Hast du mir aus dem Urlaub ein Souvenir _____? (mitbringen)", "mitgebracht"),
-    exercise("Ich habe mal wieder gen ganzen Tag im Büro _____. (sitzen)", "gesessen"),
-    exercise("Haben Sie nicht _____, dass die Sitzung erst um 15.00 Uhr anfängt? (wissen)", "gewusst"),
-    exercise("Wann hat das Konzert _____? (beginnen)", "begonnen"),
-    exercise("Der Künster ist 1961 nach Düsseldorf  _____. (umziehen)", "umgezogen"),
-    exercise("Ich habe mein Studium 1990 als Diplomphysiker _____. (abschliessen)", "abgeschlossen"),
-    exercise("Im MoMA hat 2002 ein Ausstellung der Gemälde von Gerhard Richter _____. (stattfinden)", "stattgefunden"),
-    exercise("Conrad Zuse hat 1937 den ersten frei programmierbaren Computer _____. (erfinden)", "erfunden"),
-]
-
-const verbenImPraeteritum = [
-    exercise("Wegen des schlechten Wetters _____ der Wettkampf abgesagt. (werden)", "wurde"),
-    exercise("Trotz des Strassenlärms _____ ich mich gut konzentrieren. (können)", "konnte"),
-    exercise("Trotz seines Erfolges _____ er stolz auf sich. (sein)", "war"),
-    exercise("Trotz seiner Erkältung _____ der Sänger das Konzert abbrechen. (müssen)", "musste"),
-    exercise("Trotz der hohen Personalkosten _____ die Firma in diesem Jahr einen Gewinn. (erzielen)", "erzielte"),
-    exercise("Wegen der hohen Personalkosten _____ die Firma in diesem Jahr Verluste. (machen)", "machte"),
-    exercise("Wegen des fleissigen Trainings _____ sie die Silbermedaille. (erringen)", "errang"),
-    exercise("Trotz der Massnahmen der Regierung _____ sich die Lage auf dem Arbeitsmarkt nicht. (verbessern)", "verbesserte"),
-    exercise("Wegen der Massnahmen der Regierung _____ die Zahl der Arbeitslosen. (sinken)", "sank"),
-    exercise("Trotz der vielen Gespräche _____ man keine Lösund. (finden)", "fand"),
-]
-
 const verbenMitPraepositionen = [
     exercise("Verzichten Sie doch ___ Klatsch und Trasch!", "auf"),
     exercise("Erinnerst du dich oft ___ deine Studienzeit?", "an"),
@@ -153,8 +128,6 @@ const LokalangabenWechselPraepositionen: Question[] = [
 ]
 
 export const exercises: Record<string, Exercise> = {
-    "Verben im Perfekt": verbenImPerfekt,
-    "Verben im Präteritum": verbenImPraeteritum,
     "Verben mit Präpositionen": verbenMitPraepositionen,
     "Zeitangaben Präpositionen": zeitangabenPraepositionen,
     "Deklination von Artikel": deklinationVonArtikel,
